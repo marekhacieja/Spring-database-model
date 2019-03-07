@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 @Entity
 @Table(name = "client_order")
 public class Order implements Serializable{
@@ -24,6 +27,7 @@ public class Order implements Serializable{
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id_order")
     private Long id;
+    @Fetch(FetchMode.SELECT)
     @ManyToMany
     @JoinTable(name = "order_books",
        joinColumns = {@JoinColumn(name="order_id", referencedColumnName="id_order")},

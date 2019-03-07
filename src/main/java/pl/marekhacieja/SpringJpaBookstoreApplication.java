@@ -16,7 +16,7 @@ public class SpringJpaBookstoreApplication {
 		Client client = new Client("Jan", "Nowak", "Katowicka 23, Mysłowice");
 		ClientDao clientDao = ctx.getBean(ClientDao.class);
 		clientDao.save(client);
-		System.out.println(client);
+		
 
 		Order order = new Order("05/03/2019 r.");
 		order.setClient(client);

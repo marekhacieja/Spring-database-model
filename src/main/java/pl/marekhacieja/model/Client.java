@@ -1,12 +1,15 @@
 package pl.marekhacieja.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +27,11 @@ public class Client implements Serializable {
 	private String lastname;
 	@Column(name = "address", nullable = false, length = 256)
 	private String address;
+	@OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
+	private List<Order> orders;
 
-	Client(){}
+	Client() {
+	}
 
 	public Client(String firstname, String lastname, String address) {
 		super();
@@ -66,11 +72,18 @@ public class Client implements Serializable {
 		this.address = address;
 	}
 
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + ", address=" + address
-				+ "]";
+		return "Client [id=" + id + ", firstName=" + firstname + ", lastName=" + lastname + ", address=" + address
+				+ orders.size() + ",\n orders=" + orders + "]";
 	}
-	
-	
+
 }
