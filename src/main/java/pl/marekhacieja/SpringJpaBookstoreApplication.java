@@ -10,29 +10,34 @@ import pl.marekhacieja.model.*;
 @SpringBootApplication
 public class SpringJpaBookstoreApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		ConfigurableApplicationContext ctx = SpringApplication.run(SpringJpaBookstoreApplication.class, args);
-
+		// Create clients
 		Client client = new Client("Jan", "Nowak", "Katowicka 23, Mysłowice");
-		ClientDao clientDao = ctx.getBean(ClientDao.class);
-		clientDao.save(client);
-		
 
+		// ### Create orders ###
 		Order order = new Order("05/03/2019 r.");
-		order.setClient(client);
-		OrderDao orderDao = ctx.getBean(OrderDao.class);
-		orderDao.save(order);
 
+		// ### Create books ###
 		Book book1 = new Book("Silmarillion", "J.R.R. Tolkien", "fantasy", "Nowa");
 		Book book2 = new Book("Harry Potter i Kamień Filozoficzny", "J.K. Rowling", "fantasy", "Bloomsbury");
 		Book book3 = new Book("Jesienne werble", "Diana Gabaldon", "horror", "Świat Książki");
 
-		BookDao bookDao = ctx.getBean(BookDao.class);
-		bookDao.save(book1);
-		bookDao.save(book2);
-		bookDao.save(book3);
+		// ### Add books ###
+		order.getBooks().add(book1);
+		order.getBooks().add(book2);
+		order.getBooks().add(book3);
 
-		orderDao.addProductsToOrder(order.getId(), book1, book2, book3);
+		// ### Add orders ###
+		client.addOrder(order);
+
+		// ### Add clients ###
+		ClientDao clientDao = ctx.getBean(ClientDao.class);
+		clientDao.save(client);
+
+		// ### Remove orders ###
+		clientDao.removeAllOrders(client);
+
 		ctx.close();
 	}
 }

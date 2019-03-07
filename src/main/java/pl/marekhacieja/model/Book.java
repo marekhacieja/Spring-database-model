@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,7 +29,7 @@ public class Book implements Serializable {
 	private String type;
 	@Column(name = "publisher", length = 30)
 	private String publisher;
-	@ManyToMany(mappedBy = "books")
+	@ManyToMany(mappedBy = "books", fetch = FetchType.EAGER)
 	private List<Order> orders;
 
 	Book() {
@@ -93,7 +94,7 @@ public class Book implements Serializable {
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", type=" + type + ", publisher="
-				+ publisher + ", order size=" + orders.size() + "]";
+				+ publisher + "]";
 	}
 
 }
