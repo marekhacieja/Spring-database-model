@@ -14,4 +14,4 @@ Simple bookstore app for learning purpose using Spring Boot
 
 ## Next goals
 
-* add JPQL
+* Spring Data
