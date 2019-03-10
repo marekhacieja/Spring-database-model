@@ -10,9 +10,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
+import javax.persistence.NamedQueries;
 import javax.persistence.Table;
 
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Books.findAll", query = "SELECT b FROM Book b"),
+    @NamedQuery(name = "Books.findByAuthor", query = "SELECT b FROM Book b WHERE b.author = :author"),
+    @NamedQuery(name = "Books.deleteAll", query = "DELETE FROM Book b"),
+    @NamedQuery(name = "Books.deleteByTitle", query = "DELETE FROM Book b WHERE b.title = :title")
+})
 @Table(name = "book")
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;

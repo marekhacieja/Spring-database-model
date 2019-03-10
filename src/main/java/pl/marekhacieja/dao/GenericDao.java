@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 public abstract class GenericDao<T, K> {
 
     @PersistenceContext
-    private EntityManager entityManager;
+    protected EntityManager entityManager;
     private Class<T> type;
     
     @SuppressWarnings("unchecked")
