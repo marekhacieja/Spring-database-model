@@ -1,17 +1,13 @@
 # Spring-bookstore
-Simple bookstore app for learning purpose using Spring Boot
+Simple bookstore database model
 
 ## Built With
 
+* Spring boot
 * Hibernate
 * Java Persistence API
-* Spring boot
 * MySQL
 
 ## Authors
 
 * **Marek Hacieja** 
-
-## Next goals
-
-* Spring Data
