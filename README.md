@@ -1,5 +1,5 @@
-# Spring-bookstore
-Simple bookstore database model
+# Spring-database-model
+Simple database model
 
 ## Built With
 
@@ -7,7 +7,3 @@ Simple bookstore database model
 * Hibernate
 * Java Persistence API
 * MySQL
-
-## Authors
-
-* **Marek Hacieja** 
